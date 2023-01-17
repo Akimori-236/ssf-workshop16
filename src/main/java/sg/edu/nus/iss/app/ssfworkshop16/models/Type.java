@@ -3,7 +3,7 @@ package sg.edu.nus.iss.app.ssfworkshop16.models;
 import java.io.Serializable;
 
 import jakarta.json.Json;
-import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 public class Type implements Serializable {
     private String type;
@@ -25,10 +25,9 @@ public class Type implements Serializable {
         this.count = count;
     }
 
-    public JsonObject toJson() {
+    public JsonObjectBuilder toJson() {
         return Json.createObjectBuilder()
                 .add("type", this.getType())
-                .add("count", this.getCount())
-                .build();
+                .add("count", this.getCount());
     }
 }

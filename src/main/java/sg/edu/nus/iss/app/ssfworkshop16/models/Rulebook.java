@@ -3,7 +3,7 @@ package sg.edu.nus.iss.app.ssfworkshop16.models;
 import java.io.Serializable;
 
 import jakarta.json.Json;
-import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 public class Rulebook implements Serializable {
     private int total_count;
@@ -25,10 +25,9 @@ public class Rulebook implements Serializable {
         this.file = file;
     }
 
-    public JsonObject toJson() {
+    public JsonObjectBuilder toJson() {
         return Json.createObjectBuilder()
                 .add("totalCount", this.getTotal_count())
-                .add("file", this.getFile())
-                .build();
+                .add("file", this.getFile());
     }
 }

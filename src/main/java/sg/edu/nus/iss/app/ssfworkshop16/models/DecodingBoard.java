@@ -1,7 +1,7 @@
 package sg.edu.nus.iss.app.ssfworkshop16.models;
 
 import jakarta.json.Json;
-import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 public class DecodingBoard {
     private int totalCount;
@@ -14,9 +14,8 @@ public class DecodingBoard {
         this.totalCount = totalCount;
     }
 
-    public JsonObject toJson() {
+    public JsonObjectBuilder toJson() {
         return Json.createObjectBuilder()
-                .add("totalCount", this.getTotalCount())
-                .build();
+                .add("totalCount", this.getTotalCount());
     }
 }

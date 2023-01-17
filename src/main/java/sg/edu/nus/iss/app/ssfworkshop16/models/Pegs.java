@@ -1,12 +1,10 @@
 package sg.edu.nus.iss.app.ssfworkshop16.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArrayBuilder;
-import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 
 public class Pegs implements Serializable {
@@ -29,7 +27,7 @@ public class Pegs implements Serializable {
         this.types = types;
     }
 
-    public JsonObject toJson() {
+    public JsonObjectBuilder toJson() {
         JsonArrayBuilder jab = Json.createArrayBuilder();
         for (Type t : this.types) {
             jab.add(Json.createObjectBuilder()
@@ -38,8 +36,7 @@ public class Pegs implements Serializable {
         }
         return Json.createObjectBuilder()
                 .add("totalCount", this.getTotal_count())
-                .add("types", jab)
-                .build();
+                .add("types", jab);
     }
 
 }

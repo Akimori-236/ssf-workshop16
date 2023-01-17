@@ -85,8 +85,8 @@ public class Mastermind implements Serializable {
                 .add("name", this.getName())
                 .add("pieces", this.getPieces().toJson())
                 .add("id", this.getId())
-                .add("insertCount", this.getInsertCount())
-                .add("updateCount", this.getUpdateCount())
+                // .add("insertCount", this.getInsertCount())
+                // .add("updateCount", this.getUpdateCount())
                 // .add("isUpsert", this.getUpsert())
                 .build();
     }
