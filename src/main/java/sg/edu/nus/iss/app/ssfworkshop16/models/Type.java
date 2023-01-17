@@ -2,6 +2,9 @@ package sg.edu.nus.iss.app.ssfworkshop16.models;
 
 import java.io.Serializable;
 
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+
 public class Type implements Serializable {
     private String type;
     private int count;
@@ -20,5 +23,12 @@ public class Type implements Serializable {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public JsonObject toJson() {
+        return Json.createObjectBuilder()
+                .add("type", this.getType())
+                .add("count", this.getCount())
+                .build();
     }
 }

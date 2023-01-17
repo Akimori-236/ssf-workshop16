@@ -1,6 +1,10 @@
 package sg.edu.nus.iss.app.ssfworkshop16.models;
 
 import java.io.Serializable;
+import java.util.Random;
+
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
 
 public class Mastermind implements Serializable {
     private String name;
@@ -9,6 +13,24 @@ public class Mastermind implements Serializable {
     private int insertCount;
     private int updateCount;
     private Boolean upsert;
+
+    public Mastermind(String name, Pieces pieces, String id, int insertCount, int updateCount, Boolean upsert) {
+        this.name = name;
+        this.pieces = pieces;
+        this.id = generateId(4);
+        this.insertCount = insertCount;
+        this.updateCount = updateCount;
+        this.upsert = upsert;
+    }
+
+    private synchronized String generateId(int numChars) {
+        Random r = new Random();
+        StringBuilder sb = new StringBuilder();
+        while (sb.length() < numChars) {
+            sb.append(Integer.toHexString(r.nextInt()));
+        }
+        return sb.toString().substring(0, numChars);
+    }
 
     public String getName() {
         return name;
@@ -56,5 +78,16 @@ public class Mastermind implements Serializable {
 
     public void setUpsert(Boolean upsert) {
         this.upsert = upsert;
+    }
+
+    public JsonObject toJson() {
+        return Json.createObjectBuilder()
+                .add("name", this.getName())
+                .add("pieces", this.getPieces().toJson())
+                .add("id", this.getId())
+                .add("insertCount", this.getInsertCount())
+                .add("updateCount", this.getUpdateCount())
+                // .add("isUpsert", this.getUpsert())
+                .build();
     }
 }

@@ -2,23 +2,33 @@ package sg.edu.nus.iss.app.ssfworkshop16.models;
 
 import java.io.Serializable;
 
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+
 public class Rulebook implements Serializable {
-    private int totalCount;
-    private String filename;
+    private int total_count;
+    private String file;
 
-    public int getTotalCount() {
-        return totalCount;
+    public int getTotal_count() {
+        return total_count;
     }
 
-    public void setTotalCount(int totalCount) {
-        this.totalCount = totalCount;
+    public void setTotal_count(int total_count) {
+        this.total_count = total_count;
     }
 
-    public String getFilename() {
-        return filename;
+    public String getFile() {
+        return file;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename;
+    public void setFile(String file) {
+        this.file = file;
+    }
+
+    public JsonObject toJson() {
+        return Json.createObjectBuilder()
+                .add("totalCount", this.getTotal_count())
+                .add("file", this.getFile())
+                .build();
     }
 }
